@@ -15,6 +15,8 @@
 
 // Inclusion des entêtes de librairies
 #include "saisie.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 // Déclaration des structures
 
@@ -85,6 +87,24 @@ void cons(s_liste* liste, int nbr);
  *
  */
 void rcons(s_liste* liste, int nbr);
+
+/**
+ *\fn void ajouter(s_liste* liste, int nbr, int position)
+ *
+ *\author Justine Ribas <ribasjusti@eisti.eu>
+ *\version 0.1
+ *\date 02 avril 2020
+ *
+ *\brief permet d'ajouter un élément à une position donnée de la liste
+ *
+ *
+ *\param liste la liste dans laquelle on insère un nouvel élément
+ *\param nbr la valeur du nouvel élément
+ *\param position position du nouvel élément
+ *
+ */
+void ajouter(s_liste* liste, int nbr, int position);
+
 
 /**
  *\fn void afficherListe(s_liste* liste)

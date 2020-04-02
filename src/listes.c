@@ -16,6 +16,8 @@
 
 // Code des méthodes
 
+
+/*Initialiser une liste */
 s_liste* initListe(void)
 {
   s_liste* liste; //la liste créée
@@ -28,6 +30,7 @@ s_liste* initListe(void)
 }
 
 
+/*Ajouter un noeud en début de liste*/
 void cons(s_liste* liste, int nbr)
 {
   s_element* nvElement; //le nouvel élément
@@ -41,6 +44,7 @@ void cons(s_liste* liste, int nbr)
 }
 
 
+/*Ajouter un noeud en fin de liste*/
 void rcons(s_liste* liste, int nbr)
 {
   s_element* nvElement; //le nouvel élément
@@ -63,6 +67,32 @@ void rcons(s_liste* liste, int nbr)
 }
 
 
+/*Ajouter un élément à une position donnée*/
+void ajouter(s_liste* liste, int nbr, int position)
+{
+  s_element* nvElement; //le nouvel élément
+  s_element* actuel; //l'élément actuel
+  s_element* suivant; //l'élément suivant
+  int i;
+  nvElement = malloc(sizeof(s_element));
+  if (liste == NULL || nvElement == NULL) {
+      exit(EXIT_FAILURE);
+  }
+  nvElement->valeur = nbr;
+  i = 0;
+  actuel = liste->premier;
+  suivant = actuel->suivant;
+  while (i < position-1) {
+    i++;
+    actuel = actuel->suivant;
+    suivant = suivant->suivant;
+  }
+  actuel->suivant = nvElement;
+  nvElement->suivant = suivant;
+}
+
+
+/*Afficher une liste*/
 void afficherListe(s_liste* liste)
 {
   s_element* actuel; //l'élément actuel
@@ -78,6 +108,8 @@ void afficherListe(s_liste* liste)
   printf("fin\n");
 }
 
+
+/*Renvoie la somme de la liste*/
 int listSum(s_liste* liste)
 {
   int somme; //la somme des éléments
@@ -91,6 +123,8 @@ int listSum(s_liste* liste)
   return(somme);
 }
 
+
+/*Renvoie le minimum de la liste*/
 int listMin(s_liste* liste)
 {
   int min; //le minimum de la liste
@@ -110,6 +144,8 @@ int listMin(s_liste* liste)
   return(min);
 }
 
+
+/*Vérifie si deux listes sont égales*/
 int isEqual(s_liste* liste1, int n1, s_liste* liste2, int n2)
 {
   s_element* actuel1; //l'élément actuel de liste1
@@ -133,6 +169,7 @@ int isEqual(s_liste* liste1, int n1, s_liste* liste2, int n2)
 }
 
 
+/*Supprime la première occurence d'une valeur*/
 void removeFirst(s_liste* liste, int nbr)
 {
   s_element* actuel; //l'élément actuel
@@ -153,6 +190,8 @@ void removeFirst(s_liste* liste, int nbr)
   }
 }
 
+
+/*Renvoie la liste inverse*/
 s_liste* mirror(s_liste* liste)
 {
   s_liste* listeInv; //liste inverse
