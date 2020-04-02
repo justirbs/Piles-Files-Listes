@@ -55,20 +55,36 @@ typedef struct
 s_liste* initListe(void);
 
 /**
- *\fn void insertion(s_liste* liste, int nbr)
+ *\fn void cons(s_liste* liste, int nbr)
  *
  *\author Justine Ribas <ribasjusti@eisti.eu>
  *\version 0.1
  *\date 31 mars 2020
  *
- *\brief permet d'insérer un élément dans la liste
+ *\brief permet d'ajouter un élément en tête de liste
  *
  *
  *\param liste la liste dans laquelle on insère un nouvel élément
  *\param nbr la valeur du nouvel élément
  *
  */
-void insertion(s_liste* liste, int nbr);
+void cons(s_liste* liste, int nbr);
+
+/**
+ *\fn void rcons(s_liste* liste, int nbr)
+ *
+ *\author Justine Ribas <ribasjusti@eisti.eu>
+ *\version 0.1
+ *\date 31 mars 2020
+ *
+ *\brief permet d'ajouter un élément en fin de liste
+ *
+ *
+ *\param liste la liste dans laquelle on insère un nouvel élément
+ *\param nbr la valeur du nouvel élément
+ *
+ */
+void rcons(s_liste* liste, int nbr);
 
 /**
  *\fn void afficherListe(s_liste* liste)
@@ -84,5 +100,88 @@ void insertion(s_liste* liste, int nbr);
  *
  */
 void afficherListe(s_liste* liste);
+
+/**
+ *\fn int listSum(s_liste* liste)
+ *
+ *\author Justine Ribas <ribasjusti@eisti.eu>
+ *\version 0.1
+ *\date 01 avril 2020
+ *
+ *\brief permet de calculer la somme des éléments de la liste
+ *
+ *
+ *\param liste la liste
+ *\return la somme des éléments
+ *
+ */
+int listSum(s_liste* liste);
+
+/**
+ *\fn int listMin(s_liste* liste)
+ *
+ *\author Justine Ribas <ribasjusti@eisti.eu>
+ *\version 0.1
+ *\date 01 avril 2020
+ *
+ *\brief permet de renvoyer le minimum d'une liste de, si la liste est vide, on renvoie 0.
+ *
+ *
+ *\param liste la liste
+ *\return le minimum de la liste
+ *
+ */
+int listMin(s_liste* liste);
+
+/**
+ *\fn int isEqual(s_liste* liste1, int n1, s_liste* liste2, int n2)
+ *
+ *\author Justine Ribas <ribasjusti@eisti.eu>
+ *\version 0.1
+ *\date 01 avril 2020
+ *
+ *\brief permet de vérifier si deux listes sont égales
+ *
+ *
+ *\param liste1 la première liste à comparer
+ *\param n1 la taille de la première liste
+ *\param liste2 la deuxième liste à comparer
+ *\param n2 la taille de la deuxième liste
+ *\return 1 si les deux listes sont égales, 0 sinon
+ *
+ */
+int isEqual(s_liste* liste1, int n1, s_liste* liste2, int n2);
+
+/**
+ *\fn void removeFirst(s_liste* liste, int nbr)
+ *
+ *\author Justine Ribas <ribasjusti@eisti.eu>
+ *\version 0.1
+ *\date 02 avril 2020
+ *
+ *\brief permet de supprimer la première occurence du nombre dans la liste
+ *
+ *
+ *\param liste la liste dans laquelle on supprime un élément
+ *\param nbr la valeur de l'élément à supprimer
+ *
+ */
+void removeFirst(s_liste* liste, int nbr);
+
+/**
+ *\fn s_liste* mirror(s_liste* liste)
+ *
+ *\author Justine Ribas <ribasjusti@eisti.eu>
+ *\version 0.1
+ *\date 02 avril 2020
+ *
+ *\brief permet d'obtenir la liste inverse d'une liste
+ *
+ *
+ *\param liste la liste de base
+ *\return la liste inverse
+ *
+ */
+s_liste* mirror(s_liste* liste);
 
 #endif
