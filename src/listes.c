@@ -271,3 +271,23 @@ void supprimer(s_liste* liste, int indice)
     free(suivant);
   }
 }
+
+/*Recherche d'un élément*/
+int rechercher(s_liste* liste, int nbr)
+{
+  s_element* actuel; //l'élément actuel
+  int position; //position de l'élément recherché
+  if (liste == NULL ) {
+      exit(EXIT_FAILURE);
+  }
+  actuel = liste->premier;
+  position = 0;
+  while (actuel->suivant != NULL  &&  actuel->valeur != nbr){
+    actuel = actuel->suivant;
+    position++;
+  }
+  if (actuel->suivant == NULL  &&  actuel->valeur != nbr){
+    position = -1;
+  }
+  return(position);
+}

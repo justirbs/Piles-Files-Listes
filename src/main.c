@@ -56,7 +56,9 @@ int main (void)
         afficherListe(liste);
         taille++;
         break;
+
         default : printf("erreur\n");
+        break;
       }
       break;
 
@@ -83,9 +85,23 @@ int main (void)
         afficherListe(liste);
         taille--;
         break;
+
+        default : printf("erreur\n");
+        break;
       }
 
       /*Recherche d'un élément*/
+      case 3 : printf("Quel élément recherchez-vous ?\n");
+      nbr = saisirEntier();
+      position = rechercher(liste, nbr);
+      if (position == -1){
+        printf("Ce nombre n'est pas dans votre liste...\n");
+      } else {
+        printf("Ce nombre se trouve à la position %d de la liste\n", position);
+      }
+      break;
+
+      default : printf("erreur\n");
       break;
     }
   } while (action != 4);

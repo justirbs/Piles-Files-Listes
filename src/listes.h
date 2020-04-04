@@ -250,4 +250,21 @@ void suppFin(s_liste* liste);
  */
 void supprimer(s_liste* liste, int indice);
 
+/**
+ *\fn int rechercher(s_liste* liste, int nbr)
+ *
+ *\author Justine Ribas <ribasjusti@eisti.eu>
+ *\version 0.1
+ *\date 04 avril 2020
+ *
+ *\brief permet de rechercher un élément et de retourner sa position
+ *
+ *
+ *\param liste la liste dans laquelle on cherche un élément
+ *\param nbr le nombre à rechercher
+ *\return la position de l'élément ou -1 si l'élément n'est pas dans la liste
+ *
+ */
+int rechercher(s_liste* liste, int nbr);
+
 #endif
