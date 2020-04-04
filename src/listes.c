@@ -176,23 +176,66 @@ int isEqual(s_liste* liste1, int n1, s_liste* liste2, int n2)
 /*Supprime la première occurence d'une valeur*/
 void removeFirst(s_liste* liste, int nbr)
 {
-  s_element* actuel; //l'élément actuel
-  s_element* suivant; //l'élément suivant
+  int position; //la position de l'élément
   if (liste == NULL) {
-      exit(EXIT_FAILURE);
+    exit(EXIT_FAILURE);
   }
-  actuel = liste->premier;
-  if (actuel->valeur == nbr){
-    liste->premier = actuel->suivant;
+  position = rechercher(liste, nbr);
+  if (position == -1){
+    printf("Cette valeur n'est pas dans la liste...\n");
   } else {
-    suivant = actuel->suivant;
-    while (suivant->valeur != nbr){
-      actuel = suivant;
-      suivant = suivant->suivant;
-    }
-    actuel->suivant = suivant->suivant;
-    free(suivant);
+    supprimer(liste, position);
   }
+}
+
+
+/*Supprime toutes les occurences d'une valeur*/
+int removeAll(s_liste* liste, int nbr)
+{
+  int position; //la position de l'élément
+  int supp; //le nombre d'éléments supprimés
+  if (liste == NULL) {
+    exit(EXIT_FAILURE);
+  }
+  supp = 0;
+  do {
+    position = rechercher(liste, nbr);
+    if (position != -1){
+      supprimer(liste, position);
+      supp++;
+    }
+  } while (position != -1);
+  return(supp);
+}
+
+
+/*Supprime les doublons*/
+int suppDoublon(s_liste* liste)
+{
+  s_element* actuel; //l'élément actuel
+  int position; //position de l'élément actuel
+  s_liste* inventaire; //liste où l'on stocke les valeurs existantes dans liste
+  int supp; //nombre d'éléments supprimés
+  if (liste == NULL || liste->premier == NULL) {
+    exit(EXIT_FAILURE);
+  }
+  inventaire = initListe();
+  actuel = liste->premier;
+  position = 1;
+  supp = 0;
+  cons(inventaire, actuel->valeur);
+  while( actuel->suivant != NULL){
+    actuel = actuel->suivant;
+    if (rechercher(inventaire, actuel->valeur) == -1){
+      cons(inventaire, actuel->valeur);
+      position++;
+    } else {
+      supprimer(liste, position);
+      supp++;
+    }
+  }
+  free(inventaire);
+  return(supp);
 }
 
 
@@ -201,6 +244,9 @@ s_liste* mirror(s_liste* liste)
 {
   s_liste* listeInv; //liste inverse
   s_element* actuel; //l'élément actuel
+  if (liste == NULL) {
+    exit(EXIT_FAILURE);
+  }
   listeInv = initListe();
   actuel = liste->premier;
   while (actuel != NULL) {
@@ -290,4 +336,24 @@ int rechercher(s_liste* liste, int nbr)
     position = -1;
   }
   return(position);
+}
+
+
+/*Rattache la liste à elle même*/
+void rattacher(s_liste* liste)
+{
+  s_element* actuel; //l'élément actuel de liste
+  s_liste* copie; //copie de la liste
+  if (liste == NULL ) {
+      exit(EXIT_FAILURE);
+  }
+  copie = initListe();
+  actuel = liste->premier;
+  while (actuel->suivant != NULL){
+    rcons(copie, actuel->valeur);
+    actuel = actuel->suivant;
+  }
+  rcons(copie, actuel->valeur);
+  actuel->suivant = copie->premier;
+  free(copie);
 }

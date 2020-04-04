@@ -267,4 +267,53 @@ void supprimer(s_liste* liste, int indice);
  */
 int rechercher(s_liste* liste, int nbr);
 
+/**
+ *\fn int removeAll(s_liste* liste, int nbr)
+ *
+ *\author Justine Ribas <ribasjusti@eisti.eu>
+ *\version 0.1
+ *\date 04 avril 2020
+ *
+ *\brief permet de supprimer toutes les occurences d'une valeur
+ *
+ *
+ *\param liste la liste dans laquelle on supprime des éléments
+ *\param nbr la valeur à supprimer
+ *\return le nombre d'éléments supprimés
+ *
+ */
+int removeAll(s_liste* liste, int nbr);
+
+/**
+ *\fn int suppDoublon(s_liste* liste)
+ *
+ *\author Justine Ribas <ribasjusti@eisti.eu>
+ *\version 0.1
+ *\date 04 avril 2020
+ *
+ *\brief permet de supprimer touts les doublons d'une liste
+ *
+ *
+ *\param liste la liste dans laquelle on supprime tous les doublons
+ *\return le nombre d'éléments supprimés
+ *
+ */
+int suppDoublon(s_liste* liste);
+
+/**
+ *\fn void rattacher(s_liste* liste)
+ *
+ *\author Justine Ribas <ribasjusti@eisti.eu>
+ *\version 0.1
+ *\date 04 avril 2020
+ *
+ *\brief permet de rattacher une liste à elle-même
+ *
+ *
+ *\param liste la liste à modifier
+ *
+ */
+void rattacher(s_liste* liste);
+
+
 #endif

@@ -18,7 +18,6 @@
 int main (void)
 {
   s_liste* liste;
-  s_liste* listeInv;
   int action; //action choisie par l'utilisateur
   int choix; //le choix parmi les différentes actions
   int nbr;
@@ -27,7 +26,7 @@ int main (void)
   liste = initListe();
   taille = 0;
   do {
-    printf("\nQue voulez-vous faire ?\n1-Ajouter un élément dans la liste\n2-Supprimer un élément de la liste\n3-Rechercher un élément de la liste\n4-Quitter le programme\n\n\n");
+    printf("\nQue voulez-vous faire ?\n1-Ajouter un élément dans la liste\n2-Supprimer un élément de la liste\n3-Rechercher un élément de la liste\n4-Inverser la liste\n5-Rattacher la liste à elle-même\n6-Quitter le programme\n\n\n");
     action = saisirEntier();
     switch (action) {
 
@@ -63,7 +62,7 @@ int main (void)
       break;
 
       /*Suppression d'un élément*/
-      case 2 : printf("\nOù voulez-vous supprimer un élément ?\n1-En tête de liste\n2-En fin de liste\n3-A une position donnée\n");
+      case 2 : printf("\nOù voulez-vous supprimer un élément ?\n1-En tête de liste\n2-En fin de liste\n3-A une position donnée\n4-La première occurence d'une valeur\n5-Toutes les occurences d'une valeur\n6-Les doublons\n\n");
       choix = saisirEntier();
       switch (choix) {
         /*En tête*/
@@ -77,7 +76,7 @@ int main (void)
         taille--;
         break;
         /*A une position donnée*/
-        case 3 : printf("\nA quelle position voulez vous supprimer élément ?\n");
+        case 3 : printf("\nA quelle position voulez vous supprimer élément ?\n\n");
         do {
           position = saisirEntier();
         } while (position < 0  &&  position > taille-1);
@@ -85,10 +84,28 @@ int main (void)
         afficherListe(liste);
         taille--;
         break;
+        /*La première occurence d'une valeur*/
+        case 4 : printf("Quelle valeur voulez-vous supprimer ?\n");
+        nbr = saisirEntier();
+        removeFirst(liste, nbr);
+        afficherListe(liste);
+        taille--;
+        break;
+        /*Toutes les occurences d'une valeur*/
+        case 5 : printf("Quelle valeur voulez-vous supprimer ?\n");
+        nbr = saisirEntier();
+        taille = taille - removeAll(liste, nbr);
+        afficherListe(liste);
+        break;
+        /*Les doublons*/
+        case 6 : taille = taille - suppDoublon(liste);
+        afficherListe(liste);
+        break;
 
         default : printf("erreur\n");
         break;
       }
+      break;
 
       /*Recherche d'un élément*/
       case 3 : printf("Quel élément recherchez-vous ?\n");
@@ -101,10 +118,23 @@ int main (void)
       }
       break;
 
+      /*Inverser la liste*/
+      case 4 : liste = mirror(liste);
+      afficherListe(liste);
+      break;
+
+      /*Rattacher la liste à elle-même*/
+      case 5 : rattacher(liste);
+      afficherListe(liste);
+      break;
+
+      case 6 : printf("Fin du programme\n");
+
+      
       default : printf("erreur\n");
       break;
     }
-  } while (action != 4);
+  } while (action != 6);
   free(liste);
   return(0);
 }
