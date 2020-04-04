@@ -79,16 +79,20 @@ void ajouter(s_liste* liste, int nbr, int position)
       exit(EXIT_FAILURE);
   }
   nvElement->valeur = nbr;
-  i = 0;
-  actuel = liste->premier;
-  suivant = actuel->suivant;
-  while (i < position-1) {
-    i++;
-    actuel = actuel->suivant;
-    suivant = suivant->suivant;
+  if (position == 0){
+    nvElement = liste->premier;
+  } else {
+    i = 0;
+    actuel = liste->premier;
+    suivant = actuel->suivant;
+    while (i < position-1) {
+      i++;
+      actuel = actuel->suivant;
+      suivant = suivant->suivant;
+    }
+    actuel->suivant = nvElement;
+    nvElement->suivant = suivant;
   }
-  actuel->suivant = nvElement;
-  nvElement->suivant = suivant;
 }
 
 
@@ -187,6 +191,7 @@ void removeFirst(s_liste* liste, int nbr)
       suivant = suivant->suivant;
     }
     actuel->suivant = suivant->suivant;
+    free(suivant);
   }
 }
 
@@ -203,4 +208,66 @@ s_liste* mirror(s_liste* liste)
     actuel = actuel->suivant;
   }
   return(listeInv);
+}
+
+
+/*Supprime l'élément en tête de liste*/
+void suppDeb(s_liste* liste)
+{
+  s_element* actuel; //l'élément actuel
+  if (liste->premier == NULL) {
+    exit(EXIT_FAILURE);
+  }
+  actuel = liste->premier;
+  liste->premier = actuel->suivant;
+  free(actuel);
+}
+
+
+/*Supprime l'élément en fin de liste*/
+void suppFin(s_liste* liste)
+{
+  s_element* actuel; //l'élément actuel
+  s_element* suivant; //l'élément suivant
+  if (liste->premier == NULL) {
+    exit(EXIT_FAILURE);
+  }
+  actuel =liste->premier;
+  if(actuel->suivant == NULL){
+    suppDeb(liste);
+  } else {
+    suivant = actuel->suivant;
+    while (suivant->suivant != NULL) {
+      actuel = actuel->suivant;
+      suivant = suivant->suivant;
+    }
+    free(suivant);
+    actuel->suivant = NULL;
+  }
+}
+
+
+/*Supprime l'élément à une position donnée*/
+void supprimer(s_liste* liste, int indice)
+{
+  s_element* actuel; //l'élément actuel
+  s_element* suivant; //l'élément suivant
+  int i;
+  if (liste == NULL ) {
+      exit(EXIT_FAILURE);
+  }
+  if (indice == 0){
+    suppDeb(liste);
+  } else {
+    actuel = liste->premier;
+    suivant = actuel->suivant;
+    i=0;
+    while (i < indice-1){
+      actuel = suivant;
+      suivant = suivant->suivant;
+      i++;
+    }
+    actuel->suivant = suivant->suivant;
+    free(suivant);
+  }
 }

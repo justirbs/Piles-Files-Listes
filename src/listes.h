@@ -204,4 +204,50 @@ void removeFirst(s_liste* liste, int nbr);
  */
 s_liste* mirror(s_liste* liste);
 
+/**
+ *\fn void suppDeb(s_liste* liste)
+ *
+ *\author Justine Ribas <ribasjusti@eisti.eu>
+ *\version 0.1
+ *\date 02 avril 2020
+ *
+ *\brief permet de supprimer l'élément en tête de liste
+ *
+ *
+ *\param liste la liste dans laquelle on supprime un élément
+ *
+ */
+void suppDeb(s_liste* liste);
+
+/**
+ *\fn void suppFin(s_liste* liste)
+ *
+ *\author Justine Ribas <ribasjusti@eisti.eu>
+ *\version 0.1
+ *\date 02 avril 2020
+ *
+ *\brief permet de supprimer l'élément en fin de liste
+ *
+ *
+ *\param liste la liste dans laquelle on supprime un élément
+ *
+ */
+void suppFin(s_liste* liste);
+
+/**
+ *\fn void supprimer(s_liste* liste, int indice)
+ *
+ *\author Justine Ribas <ribasjusti@eisti.eu>
+ *\version 0.1
+ *\date 04 avril 2020
+ *
+ *\brief permet de supprimer l'élément à une position donnée
+ *
+ *
+ *\param liste la liste dans laquelle on supprime un élément
+ *\param indice la position
+ *
+ */
+void supprimer(s_liste* liste, int indice);
+
 #endif
